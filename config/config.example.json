@@ -1,0 +1,94 @@
+{
+  "_说明": "复制成 config/config.json 再改。所有路径按你自己的机器改。",
+
+  "root": "D:\\DHS",
+
+  "llm": {
+    "_说明": "任何 OpenAI 兼容接口都行（DeepSeek / 通义 / 本地 vLLM…）",
+    "api_base": "https://api.deepseek.com/v1",
+    "model": "deepseek-chat",
+    "fast_model": "deepseek-chat",
+    "api_key_env": "DEEPSEEK_API_KEY",
+    "api_key_file": "config/.deepseek_key",
+    "_key_file_说明": "也可以直接把 key 写进上面这个文件（纯文本，内容就是 sk-xxx）",
+    "temperature": 1.0,
+    "timeout_seconds": 90
+  },
+
+  "persona": {
+    "persona_file": "persona/persona.md",
+    "memories_file": "persona/memories.md",
+    "history_len": 18
+  },
+
+  "asr": {
+    "_说明": "本地语音识别，sherpa-onnx + SenseVoice，CPU 就够快（RTF≈0.03）",
+    "model_dir": "voice/models/sensevoice",
+    "model_file": "model.int8.onnx",
+    "tokens_file": "tokens.txt"
+  },
+
+  "tts": {
+    "_说明": "引擎在代码里自动挑：有 N 卡用 cosyvoice，否则用 gpt_sovits；也可以 --tts 强制",
+    "default_engine": "auto",
+    "cosyvoice": {
+      "model_dir": "voice/models/CosyVoice2-0.5B",
+      "ref_wav": "voice/ref16k/ref_01.wav",
+      "ref_text": "参考音频对应的文字"
+    },
+    "gpt_sovits": {
+      "src_dir": "voice/GPT-SoVITS-src",
+      "ref_wav": "voice/ref16k/ref_01.wav",
+      "ref_text": "参考音频对应的文字",
+      "device": "cpu"
+    },
+    "edge": {
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "_可选音色": {
+        "晓晓": "zh-CN-XiaoxiaoNeural",
+        "晓伊": "zh-CN-XiaoyiNeural",
+        "小北(辽宁话)": "zh-CN-liaoning-XiaobeiNeural",
+        "小妮(陕西话)": "zh-CN-shaanxi-XiaoniNeural"
+      }
+    },
+    "_预缓冲说明": "合成速度≈播放速度时，开口前要先攒缓冲，否则播放断粮（听感像卡顿）",
+    "prebuffer_seconds": 2.5
+  },
+
+  "audio": {
+    "input_device": null,
+    "output_device": null,
+    "_说明": "null = 用系统默认；跑 tools/list_audio.py 可以查设备号"
+  },
+
+  "wechat": {
+    "_说明": "靠读微信窗口工作，需要微信 4.x 已登录 + 先跑一次 bridge 的 activate 打开可访问性门",
+    "target": "会话列表里的显示名",
+    "poll_seconds": 3,
+    "min_reply_gap_seconds": 6,
+    "max_messages_per_reply": 3,
+    "max_replies_per_hour": 150,
+    "proactive_enabled": true,
+    "proactive_gap_min_seconds": 1200,
+    "proactive_gap_max_seconds": 2700,
+    "waking_hours": [8, 23]
+  },
+
+  "notify": {
+    "_说明": "配一个就能用；都配了就都发。这些只要求电脑开机，不需要微信客户端在线",
+    "serverchan_key": "",
+    "pushplus_token": "",
+    "email": {
+      "smtp": "smtp.qq.com",
+      "port": 465,
+      "user": "",
+      "pass": "",
+      "to": ""
+    }
+  },
+
+  "diary": {
+    "time": "22:00",
+    "auto_push": true
+  }
+}

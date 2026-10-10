@@ -1,0 +1,49 @@
+# ============================================================
+# 依赖清单
+#
+# ⚠️ torch 的装法取决于你的硬件，别直接照抄：
+#   NVIDIA 显卡（CUDA 12.1）:
+#     pip install torch==2.5.1+cu121 torchaudio==2.5.1+cu121 \
+#         --index-url https://download.pytorch.org/whl/cu121
+#   纯 CPU / 没有 N 卡:
+#     pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+#   AMD 显卡（Windows）: 官方没有支持，走 CPU 即可（用 GPT-SoVITS 引擎）
+# ============================================================
+
+# --- 基础 ---
+numpy<2.0
+soundfile
+librosa==0.10.2
+scipy
+
+# --- 音频 IO ---
+pyaudio                # 麦克风/喇叭（Windows 可能需要 pipwin 或预编译轮子）
+imageio-ffmpeg         # 自带 ffmpeg 二进制，用于抽帧/转码
+
+# --- 语音识别（本地，CPU 就够快）---
+sherpa-onnx
+
+# --- 大模型 / 文本 ---
+requests
+transformers>=4.51,<5
+sentencepiece
+
+# --- 图片（日记简笔画 / 立绘）---
+Pillow
+
+# --- 看图/解析视频（可选）---
+opencv-python-headless
+
+# --- 推送 ---
+qrcode                 # 手机访问用的二维码
+
+# --- 各语音引擎（按需装）---
+edge-tts               # 云端 Edge TTS：不占显卡，装了就能用
+websockets             # 设备服务（ESP32/树莓派）
+
+# CosyVoice2 / GPT-SoVITS 是独立项目，请各自按官方 README 安装：
+#   CosyVoice:  https://github.com/FunAudioLLM/CosyVoice
+#   GPT-SoVITS: https://github.com/RVC-Boss/GPT-SoVITS
+# 本仓库的 core/tts_gpt_sovits.py 与 core/gateway.py 默认按目录
+#   voice/GPT-SoVITS-src、voice/models/CosyVoice2-0.5B
+# 去引用它们（见 config/config.example.json）

@@ -1,0 +1,74 @@
+# ============================================================
+#  ⚠️ 这个文件是"防误提交"的最后一道闸 —— 别删
+#  这个项目天然会包含真人隐私（声音、聊天、人格、记忆），
+#  一旦 push 出去就很难收回。下面这些一律不进仓库。
+# ============================================================
+
+# --- 密钥 / 凭据（最优先）---
+*.key
+.deepseek_key
+notify.json
+config/config.json
+.credentials.yaml
+*.pem
+.env
+.env.*
+
+# --- 真人数据：声音 ---
+*.wav
+*.mp3
+*.silk
+*.m4a
+*.flac
+ref16k/
+silk/
+samples/
+voices/
+
+# --- 真人数据：聊天 / 人格 / 记忆 ---
+persona/persona.md
+persona/memories.md
+!persona/example.md
+session.jsonl
+*.jsonl
+inner_state.json
+memory.json
+bot_history.json
+bot_inner.json
+bot_sent.json
+bot_state.json
+ht_*.md
+*_profile.txt
+*_digest.txt
+inspect_out.txt
+analyze_out.txt
+export_out.txt
+*.db
+
+# --- 她的日记 / 立绘 / 对话截图 ---
+diary/*.md
+diary/*.png
+diary/*.html
+out/
+output/
+
+# --- 模型权重（体积大 + 可能是他人数据）---
+models/
+*.onnx
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+
+# --- 常规 ---
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
